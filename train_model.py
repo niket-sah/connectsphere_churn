@@ -18,3 +18,11 @@ model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"]
 model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.1, verbose=2)
 
 model.save("data/churn_model.h5")
+history = model.fit(
+    X_train, y_train, 
+    epochs=50, batch_size=32, 
+    validation_split=0.1, verbose=2
+)
+import pickle
+with open("data/history.pkl", "wb") as f:
+    pickle.dump(history.history, f)
